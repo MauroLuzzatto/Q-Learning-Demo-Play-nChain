@@ -1,6 +1,8 @@
 # Reinforcement-Learning--Notebook
-
 ### Introduction to Reinforcement Learning and the Q-Learning Algorithm
+
+This notebook is supposed to give someone interested in reinforcement learning a short and easy understandable introduction. Additionally, the notebook shows how a Q-Learning algorithm can be implemented and used within an OpenAI Gym environment.
+
 
 This notebook is based on the following Q-learning algorithm code:
 - https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb
