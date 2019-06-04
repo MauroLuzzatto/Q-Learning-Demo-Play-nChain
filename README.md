@@ -17,3 +17,5 @@ This environment contains of a linear chain of states, where the agent moving in
 - action 1 = move backward to state 0, get small reward of 2
 
 The end of the chain, however, presents a large reward of 10, and standing at the end of the chain and still moving 'forward' the large reward can be gained repeatedly.
+
+![GitHub Logo](/NChain-illustration.png)
