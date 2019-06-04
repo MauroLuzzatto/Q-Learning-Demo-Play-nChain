@@ -10,6 +10,8 @@ This notebook is based on the following Q-learning algorithm code:
 The n-Chain environment is taken from the OpenAI Gym module:
 - Official documentation: https://gym.openai.com/envs/NChain-v0/
 
+### The n-Chain Environment
+
 This environment contains of a linear chain of states, where the agent moving in this environment can take two actions (for which the agent will get a different reward):
 - action 0 = move forward along the chain, but get no reward
 - action 1 = move backward to state 0, get small reward of 2
