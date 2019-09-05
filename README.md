@@ -1,13 +1,13 @@
 # Q-Learning - Demo Notebook
+The purpose of this notebook is to give someone interested in Reinforcement Learning (RL) a short and hopefully understandable introduction.
 
 ## Getting Started
-
 Run the Jupyter Notebook:
 `q_learning_notebook.ipynb`
 
 ## Introduction to Reinforcement Learning and the Q-Learning Algorithm
 
-The purpose of this notebook is to give someone interested in Reinforcement Learning (RL) a short and hopefully understandable introduction. The notebook shows a Q-Learning algorithm implementation (a type of RL Algorithm, an "Off-Policy algorithm for Temporal Difference learning") and how this algorithm can be used to solve a task within an OpenAI Gym environment (library of RL environments).
+The notebook shows a Q-Learning algorithm implementation (a type of RL Algorithm, an "Off-Policy algorithm for Temporal Difference learning") and how this algorithm can be used to solve a task within an OpenAI Gym environment (library of RL environments).
 
 The n-Chain environment is taken from the OpenAI Gym module:
 - [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
@@ -24,10 +24,9 @@ This environment contains a linear chain of states, where the agent moving in th
 
 The end of the chain, however, presents a large reward of 10, and standing at the end of the chain and still moving 'forward' the large reward can be gained repeatedly.
 
-The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward.
-
+The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward ([Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)).
 ![NChain](/NChain-illustration.png)
-[Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)
+
 
 ## Further Information about Reinforcement Learning
 - [OpenAI Gym](https://gym.openai.com/): Gym is a toolkit for developing and comparing reinforcement learning algorithms from OpenAI
