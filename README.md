@@ -1,16 +1,16 @@
-# Reinforcement-Learning--Notebook
-### Introduction to Reinforcement Learning and the Q-Learning Algorithm
+# Q-Learning - Demo Notebook
+## Introduction to Reinforcement Learning and the Q-Learning Algorithm
 
-This notebook is supposed to give someone interested in reinforcement learning a short and easy understandable introduction. Additionally, the notebook shows how a Q-Learning algorithm can be implemented and used within an OpenAI Gym environment.
+The porpose of this  notebook is to give someone interested in Reinforcement Learning (RL) a short and hopefully understandable introduction. The notebook shows a Q-Learning algorithm implementation (a type of RL Algorithm, an "Off-Policy algorithm for Temporal Difference learning") and how this algorithm can be used to solve a task within an OpenAI Gym environment (libary of RL environemnts).
 
 
-This notebook is based on the following Q-learning algorithm code:
+This notebook is inspired by the following notebook:
 - https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb
 
 The n-Chain environment is taken from the OpenAI Gym module:
-- Official documentation: https://gym.openai.com/envs/NChain-v0/
+- Official documentation: [n-Chain](https://gym.openai.com/envs/NChain-v0/)
 
-### The n-Chain Environment
+## The n-Chain Environment
 
 This environment contains of a linear chain of states, where the agent moving in this environment can take two actions (for which the agent will get a different reward):
 - action 0 = move forward along the chain, but get no reward
@@ -18,7 +18,14 @@ This environment contains of a linear chain of states, where the agent moving in
 
 The end of the chain, however, presents a large reward of 10, and standing at the end of the chain and still moving 'forward' the large reward can be gained repeatedly.
 
-The image below shows an example of a 5-Chain environment with 5 states. "a" stands for action and "r" for reward. 
+The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for reward.
 
 ![NChain](/NChain-illustration.png)
 (Image taken from: https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)
+
+## Further Information and Sources
+- [OpenAI Gym](https://gym.openai.com/): Gym is a toolkit for developing and comparing reinforcement learning algorithms from OpenAI
+- [OpenAI Baselines](https://github.com/openai/baselines): OpenAI Baselines is a set of high-quality implementations of reinforcement learning algorithms
+- [Spining Up AI](https://spinningup.openai.com): This is an educational resource produced by OpenAI that makes it easier to learn about deep reinforcement learning
+- [A Long Peek into Reinforcement Learning](https://lilianweng.github.io/lil-log/2018/02/19/a-long-peek-into-reinforcement-learning.html): Great blog post from Lilian Weng, where she is briefly going over the field of Reinforcement Learning (RL), from fundamental concepts to classic algorithms
+- [Policy Gradient Algorithms](https://lilianweng.github.io/lil-log/2018/04/08/policy-gradient-algorithms.html): Another great blog post from Lilian Weng, where she writes about policy gradient algorithms
