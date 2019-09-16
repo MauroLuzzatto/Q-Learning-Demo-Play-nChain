@@ -8,7 +8,7 @@ Download the repository:
 Run the Jupyter Notebook:
 `q_learning_notebook.ipynb`
 
-## Introduction to Reinforcement Learning and the Q-Learning Algorithm
+## Introduction to Reinforcement Learning
 
 The notebook shows a Q-Learning algorithm implementation (a type of RL Algorithm, an "Off-Policy algorithm for Temporal Difference learning") and how this algorithm can be used to solve a task within an OpenAI Gym environment (library of RL environments).
 
@@ -17,6 +17,16 @@ The n-Chain environment is taken from the OpenAI Gym module:
 
 This notebook is inspired by the following notebook:
 - [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
+
+## The Q-Learning Algorithm
+
+The below imgage describes the Q-Learning Algorithm (an oﬀ-policy Temporal-Difference control algorithm):
+
+![Q-Learning](/Sutton_Barto.png)
+Q-Learning Algorithm: [Image](http://incompleteideas.net/book/the-book-2nd.html) taken from **Richard S. Sutton and Andrew G. Barto, Reinforcement Learning: An Introduction, Second edition, 2014/2015, page 158**
+
+- alpha: learning rate
+- gamma: discount factor 
 
 
 ## The n-Chain Environment
