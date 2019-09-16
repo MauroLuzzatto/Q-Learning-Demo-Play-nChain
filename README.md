@@ -1,7 +1,10 @@
 # Q-Learning - Demo Notebook
-The purpose of this notebook is to give someone interested in Reinforcement Learning (RL) a short and hopefully understandable introduction.
+This repositoy contains a short Demo Notebook on how to implement a Reinforcement Learning agent, which learns to solve an OpenAI Gym environment.
 
 ## Getting Started
+Download the repository:
+`git clone git@github.com:MauroLuzzatto/Q-Learning-Demo-Notebook.git`
+
 Run the Jupyter Notebook:
 `q_learning_notebook.ipynb`
 
