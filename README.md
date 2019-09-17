@@ -1,6 +1,8 @@
 # Q-Learning - Demo Notebook
 This repositoy contains a short Demo Notebook on how to implement a Reinforcement Learning agent, which learns to solve an OpenAI Gym environment.
 
+This notebook is inspired by the following notebook: [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
+
 ## Getting Started
 Download the repository:
 `git clone git@github.com:MauroLuzzatto/Q-Learning-Demo-Notebook.git`
@@ -24,13 +26,13 @@ Q-Learning Algorithm: [Image](http://incompleteideas.net/book/the-book-2nd.html)
 - s: state
 - s': next state
 - a: action
+- r: reward
 - alpha: learning rate
 - gamma: discount factor
 
 ## The n-Chain Environment
 
-The n-Chain environment is taken from the OpenAI Gym module:
-- [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
+The n-Chain environment is taken from the OpenAI Gym module: [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
 
 The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward ([Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)).
 ![NChain](/NChain-illustration.png)
@@ -58,5 +60,3 @@ The end of the chain, presents a large reward of 10, and standing at the end of 
 - [Policy Gradient Algorithms](https://lilianweng.github.io/lil-log/2018/04/08/policy-gradient-algorithms.html): Another great blog post from Lilian Weng, where she writes about policy gradient algorithms
 
 
-This notebook is inspired by the following notebook:
-- [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
