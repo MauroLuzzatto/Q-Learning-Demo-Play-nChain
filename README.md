@@ -30,7 +30,8 @@ Legend:
 
 ## The n-Chain Environment
 
-The n-Chain environment is taken from the OpenAI Gym module: [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
+The n-Chain environment is taken from the OpenAI Gym module: 
+[n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
 
 The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward ([Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)).
 <!-- ![NChain](images/NChain-illustration.png)
@@ -38,13 +39,13 @@ The image below shows an example of a 5-Chain (n = 5) environment with 5 states.
 <img src="/images/NChain-illustration.png" alt="NChain" width="600"/>
 
 
-### Environment States
+#### Environment States
 
 This environment contains of a chain with n positions, every chain position corresponds to a possible state the agent can be in:
 - state n: position n on the cahin
 
 
-### Environment Actions and Rewards
+#### Environment Actions and Rewards
 
 The agent can move along the chain using two actions (for which the agent will get a different reward):
 - action 0: move forward along the chain - get no reward
