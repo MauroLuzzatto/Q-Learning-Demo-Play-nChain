@@ -1,5 +1,5 @@
-# Q-Learning - Demo Notebook
-This repositoy contains a short Demo Notebook on how to implement a Reinforcement Learning agent, which learns to solve an OpenAI Gym environment.
+# Q-Learning - Jupyter Notebook
+This repositoy contains a Jupyter Notebook with an implemenation of a Q-Learning Agent, which learns to solve the n-Chain OpenAI Gym environment 
 
 This notebook is inspired by the following notebook: [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
 
@@ -10,17 +10,15 @@ Download the repository:
 Run the Jupyter Notebook:
 `q_learning_notebook.ipynb`
 
-## Introduction to Reinforcement Learning
+## Description of the Q-Learning Algorithm
 
-The notebook contains a Q-Learning algorithm implementation and a training loop to solve the N-Chain OpenAI Gym environment.
+The notebook contains a Q-Learning algorithm implementation and a training loop to solve the n-Chain OpenAI Gym environment. The below imgage describes the Q-Learning Algorithm (an oﬀ-policy Temporal-Difference control algorithm):
 
-## The Q-Learning Algorithm
+<img src="/images/Sutton_Barto.png" alt="TicTacToe Environment" width="600"/>
 
-The below imgage describes the Q-Learning Algorithm (an oﬀ-policy Temporal-Difference control algorithm):
+Q-Learning Algorithm - [Image](http://incompleteideas.net/book/the-book-2nd.html) taken from **Richard S. Sutton and Andrew G. Barto, Reinforcement Learning: An Introduction, Second edition, 2014/2015, page 158**
 
-![Q-Learning](/Sutton_Barto.png)
-Q-Learning Algorithm: [Image](http://incompleteideas.net/book/the-book-2nd.html) taken from **Richard S. Sutton and Andrew G. Barto, Reinforcement Learning: An Introduction, Second edition, 2014/2015, page 158**
-
+Legend:
 
 - Q: action-value function
 - s: state
@@ -35,15 +33,18 @@ Q-Learning Algorithm: [Image](http://incompleteideas.net/book/the-book-2nd.html)
 The n-Chain environment is taken from the OpenAI Gym module: [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
 
 The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward ([Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)).
-![NChain](/NChain-illustration.png)
+<!-- ![NChain](images/NChain-illustration.png)
+ -->
+<img src="/images/NChain-illustration.png" alt="NChain" width="600"/>
 
-### States
+
+### Environment States
 
 This environment contains of a chain with n positions, every chain position corresponds to a possible state the agent can be in:
 - state n: position n on the cahin
 
 
-### Actions and Rewards
+### Environment Actions and Rewards
 
 The agent can move along the chain using two actions (for which the agent will get a different reward):
 - action 0: move forward along the chain - get no reward
