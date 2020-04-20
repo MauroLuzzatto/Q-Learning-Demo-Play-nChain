@@ -5,9 +5,11 @@ This notebook is inspired by the following notebook: [Deep Reinforcement Learnin
 
 ## Getting Started
 Download the repository:
+
 `git clone git@github.com:MauroLuzzatto/Q-Learning-Demo-Notebook.git`
 
 Run the Jupyter Notebook:
+
 `q_learning_notebook.ipynb`
 
 ## Description of the Q-Learning Algorithm
@@ -31,6 +33,7 @@ Legend:
 ## The n-Chain Environment
 
 The n-Chain environment is taken from the OpenAI Gym module: 
+
 [n-Chain](https://gym.openai.com/envs/NChain-v0/): Official Documentation
 
 The image below shows an example of a 5-Chain (n = 5) environment with 5 states. "a" stands for action and "r" for the reward ([Image Source](https://adventuresinmachinelearning.com/reinforcement-learning-tutorial-python-keras/)).
