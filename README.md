@@ -6,7 +6,10 @@ This notebook is inspired by the following notebook:
 
 ## Q-Learning
 
-The notebook contains a `Q-Learning` algorithm implementation and a training loop to solve the n-Chain OpenAI Gym environment. The `Q-Learning` algorithm is an oﬀ-policy temporal-difference control algorithm:
+The notebook contains a `Q-Learning` algorithm implementation and a training loop to solve the n-Chain OpenAI Gym environment. The `Q-Learning` algorithm is an oﬀ-policy temporal-difference control algorithm [1]:
+
+> Q(s,a) = Q(s,a) + lr  * [r(s,a) + gamma * max Q(s',a') - Q (s,a)]
+
 
 <img src="/images/Sutton_Barto.png" alt="TicTacToe Environment" width="600"/>
 
@@ -19,7 +22,7 @@ Legend:
 - s': next state
 - a: action
 - r: reward
-- alpha: learning rate
+- alpha: learning rate (lr)
 - gamma: discount factor
 
 
@@ -41,10 +44,9 @@ This environment contains a chain with n positions, and every chain position cor
 
 |  state    |  description|
 |---        |--- |
-| n (default n=5)    | position n on the chain |
+| n (default n=5)    | n-th postion on the chain |
 
 
-- state n: 
 ### Actions and Rewards
 
 The agent can move along the chain using two actions for which the agent will get a different rewards:
