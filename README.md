@@ -8,7 +8,7 @@ This notebook is inspired by the following notebook:
 
 The notebook contains a `Q-Learning` algorithm implementation and a training loop to solve the n-Chain OpenAI Gym environment. The `Q-Learning` algorithm is an oﬀ-policy temporal-difference control algorithm [1]:
 
-> Q(s,a) = Q(s,a) + lr  * [r(s,a) + gamma * max Q(s',a') - Q (s,a)]
+**Q(s,a) = Q(s,a) + lr  * [r(s,a) + gamma * max Q(s',a') - Q (s,a)]**
 
 
 <img src="/images/Sutton_Barto.png" alt="TicTacToe Environment" width="600"/>
