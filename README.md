@@ -17,16 +17,9 @@ The notebook contains a `Q-Learning` algorithm implementation and a training loo
 
 Legend:
 
-- Q: action-value function
-- s: state
-- s': next state
-- a: action
-- r: reward
-- alpha: learning rate (lr)
-- gamma: discount factor
+>Q: action-value function, s: state, s': next state, a: action, r: reward, alpha: learning rate (lr), gamma: discount factor
 
-
-## The Agents
+## The Q-Learning Agents
 
 Let different q-learning agents play the N-Chain evironment and see how the choosen hyperparameters change the game outcome
 
@@ -71,7 +64,7 @@ The agent can move along the chain using two actions for which the agent will ge
 
 
 
-## Additional sources about Reinforcement Learning
+## Additional Resources About Reinforcement Learning
 - [OpenAI Gym](https://gym.openai.com/): Gym is a toolkit for developing and comparing reinforcement learning algorithms from OpenAI
 - [OpenAI Baselines](https://github.com/openai/baselines): OpenAI Baselines is a set of high-quality implementations of reinforcement learning algorithms
 - [Spining Up AI](https://spinningup.openai.com): This is an educational resource produced by OpenAI that makes it easier to learn about deep reinforcement learning
