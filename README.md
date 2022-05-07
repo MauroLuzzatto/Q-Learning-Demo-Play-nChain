@@ -1,4 +1,4 @@
-# Q-Learning Notebook
+# Q-Learning Notebook - Play the N-Chain Environment with three Agents
 This repository contains a Jupyter Notebook with an implementation of a `Q-Learning` agent, which learns to solve the n-Chain `OpenAI Gym` environment 
 
 This notebook is inspired by the following notebook: 
@@ -24,6 +24,16 @@ Legend:
 - r: reward
 - alpha: learning rate (lr)
 - gamma: discount factor
+
+
+## The Agents
+
+Let different q-learning agents play the N-Chain evironment and see how the choosen hyperparameters change the game outcome
+
+- 🤓 Smart Agent 1: the agent explores and takes future rewards into account
+- 🤑 Greedy Agent 2: the agent cares only about immediate rewards (small gamma)
+- 😳 Shy Agent 3: the agent doesn't explore the environment (small epsilon)
+
 
 
 ## The n-Chain Environment
@@ -58,6 +68,8 @@ The agent can move along the chain using two actions for which the agent will ge
 
 
 **The end of the chain presents a large reward of 10, and while standing at the end of the chain and still moving forward (action 0), the large reward can be gained repeatedly**.
+
+
 
 ## Additional sources about Reinforcement Learning
 - [OpenAI Gym](https://gym.openai.com/): Gym is a toolkit for developing and comparing reinforcement learning algorithms from OpenAI
