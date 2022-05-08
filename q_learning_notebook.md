@@ -47,11 +47,11 @@ Let different q-learning agents play the N-Chain evironment and see how the choo
 ```
 
     Requirement already satisfied: gym==0.13.1 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (0.13.1)
-    Requirement already satisfied: scipy in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.8.0)
+    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
+    Requirement already satisfied: pyglet<=1.3.2,>=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.3.2)
     Requirement already satisfied: cloudpickle~=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.2.2)
     Requirement already satisfied: six in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.16.0)
-    Requirement already satisfied: pyglet<=1.3.2,>=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.3.2)
-    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
+    Requirement already satisfied: scipy in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.8.0)
     Requirement already satisfied: future in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from pyglet<=1.3.2,>=1.2.0->gym==0.13.1) (0.18.2)
     
 
@@ -87,7 +87,7 @@ env = gym.make('NChain-v0')
 
 
 
-    [1, 1, 0, 0, 1, 0, 1, 0, 0, 0]
+    [1, 0, 1, 0, 0, 1, 1, 0, 1, 1]
 
 
 
@@ -123,6 +123,7 @@ class Qagent(object):
         self.color = color
 
         self.action_size = action_size
+        self.state_size = state_size
         self.qtable = np.zeros((state_size, action_size))
 
         self.learning_rate = learning_parameters["learning_rate"]
@@ -187,11 +188,10 @@ class Qagent(object):
     def __str__(self) -> None:
         """_summary_
         """
-
-        headers = []
-        showindex=True
+        headers = [f"Action {action}" for action in range(self.action_size)]
+        showindex = [f"State {state}" for state in range(self.state_size)]
         # Generate the table in fancy format.
-        table = tabulate(self.qtable, headers=headers, showindex=showindex, tablefmt="github")
+        table = tabulate(self.qtable, headers=headers, showindex=showindex, tablefmt="fancy_grid")
         return table
 
 ```
@@ -240,7 +240,7 @@ def learn_to_play(agent: Qagent, max_game_steps: int = 10, total_episodes: int =
         # reduce epsilon, for exploration-exploitation tradeoff
         agent.update_epsilon(episode)
 
-        if episode % 100 == 0:
+        if episode % 300 == 0:
             elapsed_time = round((time.time() - start), 1)
             print(f"elapsed time [sec]: {elapsed_time}, episode: {episode}")
 
@@ -264,25 +264,23 @@ max_game_steps = 10  # Set number of stepts an agent can take, before the enviro
 total_episodes = 1000  # Set total of training episodes (the number of trials a agent can do)    
 ```
 
+### Note on learning paramaters
+-  gamma = 1: we care about all future rewards equally as the current one 
+-  gamma = 0: we only care about the current reward)
+-  epsilon: smaller decay rate, more exploration
+
 ### 🤓 Smart Agent 1 - the agent explores and takes future rewards into account
 
 
 ```python
 
-name = '🤓 Smart Agent 1 - the agent explores and takes future rewards into accountt'
+name = 'Smart Agent 1 - the agent explores and takes future rewards into accountt'
 color = "orange"
 
-# gamma = 1, we care about all future rewards equally as the current one 
-# gamma = 0, we only care about the current reward)
-# smaller decay rate, more exploration
-
-# q-learning parameters
 learning_parameters = {
     'learning_rate': 0.8,
     'gamma': 0.9 
 }  
-
-# exploration-exploitation parameters
 exploration_parameters = {
     'epsilon': 1,
     'max_epsilon': 1,
@@ -295,31 +293,22 @@ q_agent_1 = learn_to_play(q_agent_1, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 100
-    elapsed time [sec]: 0.1, episode: 200
     elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.1, episode: 400
-    elapsed time [sec]: 0.2, episode: 500
     elapsed time [sec]: 0.2, episode: 600
-    elapsed time [sec]: 0.2, episode: 700
-    elapsed time [sec]: 0.3, episode: 800
-    elapsed time [sec]: 0.3, episode: 900
+    elapsed time [sec]: 0.2, episode: 900
     
 
 ### 🤑 Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)
 
 
 ```python
-name = '🤑 Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)'
+name = 'Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)'
 color =  "m"
 
-# q-learning parameters
 learning_parameters = {
     'learning_rate': 0.8,
     'gamma': 0.01
 }   
-
-# exploration-exploitation parameters
 exploration_parameters = {
     'epsilon': 1,
     'max_epsilon': 0.5,
@@ -333,31 +322,22 @@ q_agent_2 = learn_to_play(q_agent_2, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 100
-    elapsed time [sec]: 0.1, episode: 200
     elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.2, episode: 400
-    elapsed time [sec]: 0.2, episode: 500
-    elapsed time [sec]: 0.2, episode: 600
-    elapsed time [sec]: 0.3, episode: 700
-    elapsed time [sec]: 0.4, episode: 800
-    elapsed time [sec]: 0.4, episode: 900
+    elapsed time [sec]: 0.1, episode: 600
+    elapsed time [sec]: 0.2, episode: 900
     
 
 ### 😳 Shy Agent 3 - the agent doesn't explore the environment (small epsilon)
 
 
 ```python
-name = "😳 Shy Agent 3 - the agent doesn't explore the environment (small epsilon)"
+name = "Shy Agent 3 - the agent doesn't explore the environment (small epsilon)"
 color = "b"
 
-# q-learning parameters
 learning_parameters = {
     'learning_rate': 0.8,
     'gamma': 0.9
 } 
-
-# exploration-exploitation parameters
 exploration_parameters = {
     'epsilon': 1,
     'max_epsilon': 0.2,
@@ -370,25 +350,15 @@ q_agent_3 = learn_to_play(q_agent_3, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 100
-    elapsed time [sec]: 0.1, episode: 200
-    elapsed time [sec]: 0.2, episode: 300
-    elapsed time [sec]: 0.2, episode: 400
-    elapsed time [sec]: 0.2, episode: 500
-    elapsed time [sec]: 0.3, episode: 600
-    elapsed time [sec]: 0.3, episode: 700
-    elapsed time [sec]: 0.3, episode: 800
-    elapsed time [sec]: 0.4, episode: 900
+    elapsed time [sec]: 0.1, episode: 300
+    elapsed time [sec]: 0.2, episode: 600
+    elapsed time [sec]: 0.2, episode: 900
     
 
 
 ```python
 from visualize_plays import VisualizePlays
-```
-
-
-```python
-# visualize the different set of parameters
+# visualize the different agents
 plays = VisualizePlays(q_agent_1, q_agent_2, q_agent_3)
 plays.plot()
 ```
@@ -399,52 +369,85 @@ plays.plot()
     
 
 
-* y-axis: state 0 to state 4
-* x-axis: action 0 and action 1
-* action 0 = move forward, but get no reward (in the last state get large reward)
-* action 1 = move backward to state 0, get small reward
-
 ## Investigating the q-table values
 higher values mean higher future rewards for this specific action-state pair
 
 
 ```python
-print(f'Agent 1: {q_agent_1}')
-print(f'Agent 2: {q_agent_2}')
-print(f'Agent 3: {q_agent_3}')
+print(f'Agent 1:\n{q_agent_1}')
 ```
 
-    |---|--------|--------|
-    | 0 |  65.61 | 61.049 |
-    | 1 |  72.9  | 61.049 |
-    | 2 |  81    | 61.049 |
-    | 3 |  90    | 61.049 |
-    | 4 | 100    | 61.049 |
+    Agent 1:
+    ╒═════════╤════════════╤════════════╕
+    │         │   Action 0 │   Action 1 │
+    ╞═════════╪════════════╪════════════╡
+    │ State 0 │      65.61 │     61.049 │
+    ├─────────┼────────────┼────────────┤
+    │ State 1 │      72.9  │     61.049 │
+    ├─────────┼────────────┼────────────┤
+    │ State 2 │      81    │     61.049 │
+    ├─────────┼────────────┼────────────┤
+    │ State 3 │      90    │     61.049 │
+    ├─────────┼────────────┼────────────┤
+    │ State 4 │     100    │     61.049 │
+    ╘═════════╧════════════╧════════════╛
     
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    c:\Users\maurol\OneDrive\Dokumente\Python_Scripts\Q-Learning-Demo-Notebook\q_learning_notebook.ipynb Cell 22' in <cell line: 1>()
-    ----> <a href='vscode-notebook-cell:/c%3A/Users/maurol/OneDrive/Dokumente/Python_Scripts/Q-Learning-Demo-Notebook/q_learning_notebook.ipynb#ch0000019?line=0'>1</a> print(f'Agent 1: {q_agent_1}')
-          <a href='vscode-notebook-cell:/c%3A/Users/maurol/OneDrive/Dokumente/Python_Scripts/Q-Learning-Demo-Notebook/q_learning_notebook.ipynb#ch0000019?line=1'>2</a> print(f'Agent 2: {q_agent_2}')
-          <a href='vscode-notebook-cell:/c%3A/Users/maurol/OneDrive/Dokumente/Python_Scripts/Q-Learning-Demo-Notebook/q_learning_notebook.ipynb#ch0000019?line=2'>3</a> print(f'Agent 3: {q_agent_3}')
-    
-
-    TypeError: __str__ returned non-string (type NoneType)
-
 
 The q-table of case1 should have similar values like the following table:
 
-|    ----   | Action 0  | Action 1 | 
+|       | Action 0  | Action 1 | 
 | ------------- | ------------- | ------------- |
-| state 0 | 65.61  | 61.049  |
-| state 1 | 72.9  | 61.049  |
-| state 2 | 81.  | 61.049  |
-| state 3 | 90.  | 61.049  |
-| state 4 | 100.  | 61.049  |
+| State 0 | 65.61  | 61.049  |
+| State 1 | 72.9  | 61.049  |
+| State 2 | 81.  | 61.049  |
+| State 3 | 90.  | 61.049  |
+| State 4 | 100.  | 61.049  |
+
+Legend:
+- Action 0 = move forward, but get no reward (in the last state get large reward)
+- Action 1 = move backward to state 0, get small reward
+
+
+```python
+print(f'Agent 2:\n{q_agent_2}')
+```
+
+    Agent 2:
+    ╒═════════╤══════════════╤════════════╕
+    │         │     Action 0 │   Action 1 │
+    ╞═════════╪══════════════╪════════════╡
+    │ State 0 │  0.020202    │    2.0202  │
+    ├─────────┼──────────────┼────────────┤
+    │ State 1 │  0.020202    │    2.0202  │
+    ├─────────┼──────────────┼────────────┤
+    │ State 2 │  0.000775456 │    2.0202  │
+    ├─────────┼──────────────┼────────────┤
+    │ State 3 │  0.0807766   │    1.61616 │
+    ├─────────┼──────────────┼────────────┤
+    │ State 4 │ 10.0971      │    0       │
+    ╘═════════╧══════════════╧════════════╛
+    
+
+
+```python
+print(f'Agent 3:\n{q_agent_3}')
+```
+
+    Agent 3:
+    ╒═════════╤════════════╤════════════╕
+    │         │   Action 0 │   Action 1 │
+    ╞═════════╪════════════╪════════════╡
+    │ State 0 │    4.13588 │   20       │
+    ├─────────┼────────────┼────────────┤
+    │ State 1 │    0       │    7.4666  │
+    ├─────────┼────────────┼────────────┤
+    │ State 2 │    0       │    6.50923 │
+    ├─────────┼────────────┼────────────┤
+    │ State 3 │    0       │    0       │
+    ├─────────┼────────────┼────────────┤
+    │ State 4 │    0       │    0       │
+    ╘═════════╧════════════╧════════════╛
+    
 
 
 ```python
