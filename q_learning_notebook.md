@@ -47,11 +47,11 @@ Let different q-learning agents play the N-Chain evironment and see how the choo
 ```
 
     Requirement already satisfied: gym==0.13.1 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (0.13.1)
-    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
     Requirement already satisfied: pyglet<=1.3.2,>=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.3.2)
-    Requirement already satisfied: cloudpickle~=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.2.2)
     Requirement already satisfied: six in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.16.0)
     Requirement already satisfied: scipy in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.8.0)
+    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
+    Requirement already satisfied: cloudpickle~=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.2.2)
     Requirement already satisfied: future in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from pyglet<=1.3.2,>=1.2.0->gym==0.13.1) (0.18.2)
     
 
@@ -87,7 +87,7 @@ env = gym.make('NChain-v0')
 
 
 
-    [1, 0, 1, 0, 0, 1, 1, 0, 1, 1]
+    [0, 1, 1, 1, 1, 0, 0, 0, 1, 1]
 
 
 
@@ -186,13 +186,13 @@ class Qagent(object):
         return action
 
     def __str__(self) -> None:
-        """_summary_
+        """plot the q-table
         """
         headers = [f"Action {action}" for action in range(self.action_size)]
         showindex = [f"State {state}" for state in range(self.state_size)]
         # Generate the table in fancy format.
         table = tabulate(self.qtable, headers=headers, showindex=showindex, tablefmt="fancy_grid")
-        return table
+        return f"{self.name}\n{table}"
 
 ```
 
@@ -293,9 +293,9 @@ q_agent_1 = learn_to_play(q_agent_1, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.2, episode: 600
-    elapsed time [sec]: 0.2, episode: 900
+    elapsed time [sec]: 0.2, episode: 300
+    elapsed time [sec]: 0.3, episode: 600
+    elapsed time [sec]: 0.4, episode: 900
     
 
 ### 🤑 Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)
@@ -323,8 +323,8 @@ q_agent_2 = learn_to_play(q_agent_2, max_game_steps=max_game_steps, total_episod
 
     elapsed time [sec]: 0.0, episode: 0
     elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.1, episode: 600
-    elapsed time [sec]: 0.2, episode: 900
+    elapsed time [sec]: 0.2, episode: 600
+    elapsed time [sec]: 0.3, episode: 900
     
 
 ### 😳 Shy Agent 3 - the agent doesn't explore the environment (small epsilon)
@@ -351,8 +351,8 @@ q_agent_3 = learn_to_play(q_agent_3, max_game_steps=max_game_steps, total_episod
 
     elapsed time [sec]: 0.0, episode: 0
     elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.2, episode: 600
-    elapsed time [sec]: 0.2, episode: 900
+    elapsed time [sec]: 0.3, episode: 600
+    elapsed time [sec]: 0.4, episode: 900
     
 
 
@@ -363,21 +363,15 @@ plays = VisualizePlays(q_agent_1, q_agent_2, q_agent_3)
 plays.plot()
 ```
 
-
-    
-![png](q_learning_notebook_files/q_learning_notebook_19_0.png)
-    
-
-
 ## Investigating the q-table values
 higher values mean higher future rewards for this specific action-state pair
 
 
 ```python
-print(f'Agent 1:\n{q_agent_1}')
+print(f'{q_agent_1}')
 ```
 
-    Agent 1:
+    Smart Agent 1 - the agent explores and takes future rewards into accountt
     ╒═════════╤════════════╤════════════╕
     │         │   Action 0 │   Action 1 │
     ╞═════════╪════════════╪════════════╡
@@ -409,10 +403,10 @@ Legend:
 
 
 ```python
-print(f'Agent 2:\n{q_agent_2}')
+print(f'{q_agent_2}')
 ```
 
-    Agent 2:
+    Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)
     ╒═════════╤══════════════╤════════════╕
     │         │     Action 0 │   Action 1 │
     ╞═════════╪══════════════╪════════════╡
@@ -420,36 +414,31 @@ print(f'Agent 2:\n{q_agent_2}')
     ├─────────┼──────────────┼────────────┤
     │ State 1 │  0.020202    │    2.0202  │
     ├─────────┼──────────────┼────────────┤
-    │ State 2 │  0.000775456 │    2.0202  │
+    │ State 2 │  0.000945062 │    2.0202  │
     ├─────────┼──────────────┼────────────┤
-    │ State 3 │  0.0807766   │    1.61616 │
+    │ State 3 │  0.0999749   │    0       │
     ├─────────┼──────────────┼────────────┤
-    │ State 4 │ 10.0971      │    0       │
+    │ State 4 │ 10.1002      │    2.01697 │
     ╘═════════╧══════════════╧════════════╛
     
 
 
 ```python
-print(f'Agent 3:\n{q_agent_3}')
+print(f'{q_agent_3}')
 ```
 
-    Agent 3:
+    Shy Agent 3 - the agent doesn't explore the environment (small epsilon)
     ╒═════════╤════════════╤════════════╕
     │         │   Action 0 │   Action 1 │
     ╞═════════╪════════════╪════════════╡
-    │ State 0 │    4.13588 │   20       │
+    │ State 0 │    13.7414 │    20      │
     ├─────────┼────────────┼────────────┤
-    │ State 1 │    0       │    7.4666  │
+    │ State 1 │     0      │    18.8022 │
     ├─────────┼────────────┼────────────┤
-    │ State 2 │    0       │    6.50923 │
+    │ State 2 │     0      │     2.752  │
     ├─────────┼────────────┼────────────┤
-    │ State 3 │    0       │    0       │
+    │ State 3 │     0      │     0      │
     ├─────────┼────────────┼────────────┤
-    │ State 4 │    0       │    0       │
+    │ State 4 │     0      │     0      │
     ╘═════════╧════════════╧════════════╛
     
-
-
-```python
-
-```

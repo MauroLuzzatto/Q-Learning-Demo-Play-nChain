@@ -1,6 +1,8 @@
 # Q-Learning Notebook - Play the N-Chain Environment with three Agents
 This repository contains a Jupyter Notebook with an implementation of a `Q-Learning` agent, which learns to solve the n-Chain `OpenAI Gym` environment 
 
+A markdown version of this jupyter notebook can be found here: [Q-Learning Notebook - Play the N-Chain Environment with three Agents](q_learning_notebook.md)
+
 This notebook is inspired by the following notebook: 
 [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
 
@@ -11,7 +13,7 @@ The notebook contains a `Q-Learning` algorithm implementation and a training loo
 **Q(s,a) = Q(s,a) + lr  * [r(s,a) + gamma * max Q(s',a') - Q (s,a)]**
 
 
-<img src="/images/Sutton_Barto.png" alt="TicTacToe Environment" width="600"/>
+<img src="/images/Sutton_Barto.png" alt="Q-Learning" width="600"/>
 
 [Image](http://incompleteideas.net/book/the-book-2nd.html) taken from **Richard S. Sutton and Andrew G. Barto, Reinforcement Learning: An Introduction, Second edition, 2014/2015, page 158**
 
