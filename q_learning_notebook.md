@@ -49,9 +49,9 @@ Let different q-learning agents play the N-Chain evironment and see how the choo
     Requirement already satisfied: gym==0.13.1 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (0.13.1)
     Requirement already satisfied: pyglet<=1.3.2,>=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.3.2)
     Requirement already satisfied: six in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.16.0)
-    Requirement already satisfied: scipy in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.8.0)
-    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
     Requirement already satisfied: cloudpickle~=1.2.0 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.2.2)
+    Requirement already satisfied: numpy>=1.10.4 in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.22.3)
+    Requirement already satisfied: scipy in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from gym==0.13.1) (1.8.0)
     Requirement already satisfied: future in c:\users\maurol\anaconda3\envs\nchain_env\lib\site-packages (from pyglet<=1.3.2,>=1.2.0->gym==0.13.1) (0.18.2)
     
 
@@ -87,11 +87,11 @@ env = gym.make('NChain-v0')
 
 
 
-    [0, 1, 1, 1, 1, 0, 0, 0, 1, 1]
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 0]
 
 
 
-define the class which consists the q-learning algorithm
+Create the Q-agent class that contains the q-learning algorithm
 
 
 ```python
@@ -185,12 +185,11 @@ class Qagent(object):
             action = np.random.choice(self.action_size)
         return action
 
-    def __str__(self) -> None:
-        """plot the q-table
+    def __str__(self, tablefmt="fancy_grid") -> None:
+        """plot the q-table. Generate the table in fancy format.
         """
         headers = [f"Action {action}" for action in range(self.action_size)]
         showindex = [f"State {state}" for state in range(self.state_size)]
-        # Generate the table in fancy format.
         table = tabulate(self.qtable, headers=headers, showindex=showindex, tablefmt="fancy_grid")
         return f"{self.name}\n{table}"
 
@@ -249,7 +248,6 @@ def learn_to_play(agent: Qagent, max_game_steps: int = 10, total_episodes: int =
     agent.epsilons = epsilons
     agent.q_averages = q_averages
     return agent
-
 ```
 
 
@@ -293,9 +291,9 @@ q_agent_1 = learn_to_play(q_agent_1, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.2, episode: 300
-    elapsed time [sec]: 0.3, episode: 600
-    elapsed time [sec]: 0.4, episode: 900
+    elapsed time [sec]: 0.5, episode: 300
+    elapsed time [sec]: 1.1, episode: 600
+    elapsed time [sec]: 1.8, episode: 900
     
 
 ### 🤑 Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)
@@ -322,9 +320,9 @@ q_agent_2 = learn_to_play(q_agent_2, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.2, episode: 600
-    elapsed time [sec]: 0.3, episode: 900
+    elapsed time [sec]: 0.8, episode: 300
+    elapsed time [sec]: 1.3, episode: 600
+    elapsed time [sec]: 1.7, episode: 900
     
 
 ### 😳 Shy Agent 3 - the agent doesn't explore the environment (small epsilon)
@@ -350,9 +348,9 @@ q_agent_3 = learn_to_play(q_agent_3, max_game_steps=max_game_steps, total_episod
 ```
 
     elapsed time [sec]: 0.0, episode: 0
-    elapsed time [sec]: 0.1, episode: 300
-    elapsed time [sec]: 0.3, episode: 600
-    elapsed time [sec]: 0.4, episode: 900
+    elapsed time [sec]: 0.4, episode: 300
+    elapsed time [sec]: 0.8, episode: 600
+    elapsed time [sec]: 1.5, episode: 900
     
 
 
@@ -363,12 +361,18 @@ plays = VisualizePlays(q_agent_1, q_agent_2, q_agent_3)
 plays.plot()
 ```
 
+
+    
+![png](q_learning_notebook_files/q_learning_notebook_19_0.png)
+    
+
+
 ## Investigating the q-table values
 higher values mean higher future rewards for this specific action-state pair
 
 
 ```python
-print(f'{q_agent_1}')
+print(q_agent_1)
 ```
 
     Smart Agent 1 - the agent explores and takes future rewards into accountt
@@ -403,42 +407,26 @@ Legend:
 
 
 ```python
-print(f'{q_agent_2}')
+print(q_agent_2)
 ```
 
     Greedy Agent 2 - the agent cares only about immediate rewards (small gamma)
-    ╒═════════╤══════════════╤════════════╕
-    │         │     Action 0 │   Action 1 │
-    ╞═════════╪══════════════╪════════════╡
-    │ State 0 │  0.020202    │    2.0202  │
-    ├─────────┼──────────────┼────────────┤
-    │ State 1 │  0.020202    │    2.0202  │
-    ├─────────┼──────────────┼────────────┤
-    │ State 2 │  0.000945062 │    2.0202  │
-    ├─────────┼──────────────┼────────────┤
-    │ State 3 │  0.0999749   │    0       │
-    ├─────────┼──────────────┼────────────┤
-    │ State 4 │ 10.1002      │    2.01697 │
-    ╘═════════╧══════════════╧════════════╛
+    ╒═════════╤════════════╤════════════╕
+    │         │   Action 0 │   Action 1 │
+    ╞═════════╪════════════╪════════════╡
+    │ State 0 │  0.020202  │    2.0202  │
+    ├─────────┼────────────┼────────────┤
+    │ State 1 │  0.020202  │    2.0202  │
+    ├─────────┼────────────┼────────────┤
+    │ State 2 │  0.0160323 │    2.0202  │
+    ├─────────┼────────────┼────────────┤
+    │ State 3 │  0         │    1.93939 │
+    ├─────────┼────────────┼────────────┤
+    │ State 4 │  0         │    1.61616 │
+    ╘═════════╧════════════╧════════════╛
     
 
 
 ```python
-print(f'{q_agent_3}')
+print(q_agent_3)
 ```
-
-    Shy Agent 3 - the agent doesn't explore the environment (small epsilon)
-    ╒═════════╤════════════╤════════════╕
-    │         │   Action 0 │   Action 1 │
-    ╞═════════╪════════════╪════════════╡
-    │ State 0 │    13.7414 │    20      │
-    ├─────────┼────────────┼────────────┤
-    │ State 1 │     0      │    18.8022 │
-    ├─────────┼────────────┼────────────┤
-    │ State 2 │     0      │     2.752  │
-    ├─────────┼────────────┼────────────┤
-    │ State 3 │     0      │     0      │
-    ├─────────┼────────────┼────────────┤
-    │ State 4 │     0      │     0      │
-    ╘═════════╧════════════╧════════════╛
-    
