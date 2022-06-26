@@ -1,8 +1,6 @@
 # Q-Learning Notebook - Play the N-Chain Environment with three Agents
 This repository contains a Jupyter Notebook with an implementation of a `Q-Learning` agent, which learns to solve the n-Chain `OpenAI Gym` environment 
 
-A markdown version of this jupyter notebook can be found here: [Q-Learning Notebook - Play the N-Chain Environment with three Agents](q_learning_notebook.md)
-
 This notebook is inspired by the following notebook: 
 [Deep Reinforcement Learning Course Notebook](https://github.com/simoninithomas/Deep_reinforcement_learning_Course/blob/master/Q%20learning/Taxi-v2/Q%20Learning%20with%20OpenAI%20Taxi-v2%20video%20version.ipynb)
 
@@ -10,20 +8,14 @@ This notebook is inspired by the following notebook:
 
 The notebook contains a `Q-Learning` algorithm implementation and a training loop to solve the n-Chain OpenAI Gym environment. The `Q-Learning` algorithm is an oﬀ-policy temporal-difference control algorithm [1]:
 
-**Q(s,a) = Q(s,a) + lr  * [r(s,a) + gamma * max Q(s',a') - Q (s,a)]**
-
 
 <img src="/images/Sutton_Barto.png" alt="Q-Learning" width="600"/>
 
 [Image](http://incompleteideas.net/book/the-book-2nd.html) taken from **Richard S. Sutton and Andrew G. Barto, Reinforcement Learning: An Introduction, Second edition, 2014/2015, page 158**
 
-Legend:
-
->Q: action-value function, s: state, s': next state, a: action, r: reward, alpha: learning rate (lr), gamma: discount factor
-
 ## The Q-Learning Agents
 
-Let different q-learning agents play the N-Chain evironment and see how the choosen hyperparameters change the game outcome
+In this notebook we let different q-learning agents play the N-Chain evironment and see how they perform in the game. The following agents are implemented:
 
 - 🤓 Smart Agent 1: the agent explores and takes future rewards into account
 - 🤑 Greedy Agent 2: the agent cares only about immediate rewards (small gamma)
