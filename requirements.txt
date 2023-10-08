@@ -28,7 +28,7 @@ packaging==21.3
 parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
 pathspec==0.9.0
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
-Pillow==9.3.0
+Pillow==10.0.1
 platformdirs==2.5.2
 prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
 pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
