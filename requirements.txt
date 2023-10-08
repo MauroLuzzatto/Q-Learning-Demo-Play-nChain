@@ -11,7 +11,7 @@ decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 entrypoints @ file:///C:/ci/entrypoints_1649926621128/work
 executing @ file:///opt/conda/conda-bld/executing_1646925071911/work
 fonttools==4.33.3
-future==0.18.2
+future==0.18.3
 gym==0.13.1
 ipykernel @ file:///C:/ci/ipykernel_1646982785443/work/dist/ipykernel-6.9.1-py3-none-any.whl
 ipython @ file:///C:/ci/ipython_1651601994004/work
